@@ -29,12 +29,16 @@ app.get('/mealType',async(req,res)=>{
     res.send(output)
 })
 
-app.get('/restaurants',async(req,res)=>{
-    let query = {};
-    if(req.query.stateId && req.query.mealId ){
-        query = {state_id : Number(req.query.stateId),"mealTypes.mealtype_id":Number(req.query.mealId)}
-    }else if(req.query.mealId){
-        query = {"mealTypes.mealtype_id":Number(req.query.mealId)}
+app.get('/restaurants', async(req,res) => {
+    let query = {}
+    if(req.query.stateId && req.query.mealId){
+        query={state_id: Number(req.query.stateId),"mealTypes.mealtype_id": Number(req.query.mealId)}
+    }
+    else if(req.query.stateId){
+        query={state_id: Number(req.query.stateId)}
+    }
+    else if(req.query.mealId){
+        query={"mealTypes.mealtype_id": Number(req.query.mealId)}
     }
     else{
         query = {}
