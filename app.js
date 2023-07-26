@@ -4,7 +4,7 @@ let port = process.env.PORT||9130;
 let Mongo = require('mongodb');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-let {dbConnect,getData,postData,updateOrder,deleteOrder} = require('./controller/dbController')
+let {dbConnect,getData,postData} = require('./controller/dbController')
 
 
 app.use(bodyParser.json());
@@ -72,12 +72,14 @@ app.get('/filter/:mealId',async(req,res)=>{
     res.send(output)
 })
 
-app.get('/details/:id', async(req,res) => {
-    let id = new Mongo.ObjectId(req.params.id)
-    let query = {_id:id}
-    let collection = "restaurants";
+app.get('/details/:id',async(req,res)=>{
+    let id = Number(req.params.id);
+    let query = {
+        product_id : id
+    }
+    let collection = "details";
     let output = await getData(collection,query);
-    res.send(output)
+    res.send(output);
 })
 
 app.get('/menu/:id',async(req,res) => {
