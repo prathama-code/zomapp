@@ -77,7 +77,7 @@ app.get('/details/:id',async(req,res)=>{
     let query = {
         _id : id
     }
-    let collection = "details";
+    let collection = "restaurants";
     let output = await getData(collection,query);
     res.send(output);
 })
