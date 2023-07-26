@@ -75,7 +75,7 @@ app.get('/filter/:mealId',async(req,res)=>{
 app.get('/details/:id',async(req,res)=>{
     let id = Number(req.params.id);
     let query = {
-        _id : id
+        restaurant_id : id
     }
     let collection = "restaurants";
     let output = await getData(collection,query);
